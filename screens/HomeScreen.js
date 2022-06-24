@@ -1,13 +1,13 @@
 import { ScrollView, Text, View } from 'react-native';
 import { Card } from 'react-native-elements';
 import { useSelector } from 'react-redux';
-import { baseURL } from '../shared/baseUrl';
+import { baseUrl } from '../shared/baseUrl';
 
 const FeaturedItem = ({item}) => {
     if (item) {
         return (
             <Card containerStyle={{padding: 0}}>
-                <Card.Image source={{ uri: baseURL + item.image }} >
+                <Card.Image source={{ uri: baseUrl + item.image }} >
                     <View style={{justifyContent: 'center', flex: 1}}>
                         <Text style={{color: 'white', textAlign: 'center', fontSize: 20}}>
                             {item.name}
