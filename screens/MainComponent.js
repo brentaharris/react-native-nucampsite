@@ -140,7 +140,7 @@ const CustomDrawerContent = (props) => (
         </View>
         <DrawerItemList {...props} labelStyle={{ fontWeight: 'bold' }} />
     </DrawerContentScrollView>
-)
+);
 
 const Main = () => {
 
