@@ -258,7 +258,6 @@ const Main = () => {
                         )
                      }}
                 />
-
                 <Drawer.Screen 
                     name='Favorites'
                     component={FavoritesNavigator}
@@ -275,7 +274,6 @@ const Main = () => {
                         )
                      }}
                 />
-
                 <Drawer.Screen
                     name='About'
                     component={AboutNavigator}
