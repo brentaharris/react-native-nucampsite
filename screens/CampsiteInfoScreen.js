@@ -4,14 +4,15 @@ import { Rating, Input, Icon } from 'react-native-elements';
 import RenderCampsite from '../features/campsites/RenderCampsite';
 import { useDispatch, useSelector } from 'react-redux';
 import { postComment } from '../features/comments/commentsSlice';
+import { toggleFavorite } from '../features/favorites/favoritesSlice';
 
 
 const CampsiteInfoScreen = ({ route }) => {
     const { campsite } = route.params;
     const comments = useSelector((state) => state.comments);
+    const favorites = useSelector((state) => state.favorites);
     const dispatch = useDispatch();
 
-    const [favorite, setFavorite] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [rating, setRating] = useState(5);
     const [author, setAuthor] = useState('');
@@ -65,8 +66,8 @@ const CampsiteInfoScreen = ({ route }) => {
                     <>
                         <RenderCampsite 
                             campsite={campsite}
-                            isFavorite={favorite}
-                            markFavorite={() => setFavorite(true)}
+                            isFavorite={favorites.includes(campsite.id)}
+                            markFavorite={() => dispatch(toggleFavorite(campsite.id))}
                             onShowModal={() => setShowModal(!showModal)}
                         />
                         <Text style={styles.commentsTitle}>Comments</Text>
