@@ -22,6 +22,35 @@ const AboutScreen = () => {
     
     const partners = useSelector((state) => state.partners);
 
+        if(partners.isLoading){ 
+            return(
+            <ScrollView>
+                <Mission />
+                <Card>
+                    <Card.Title>
+                        Community Parters
+                    </Card.Title>
+                    <Card.Divider />
+                    <Loading />
+                </Card>
+            </ScrollView>
+            );
+        }
+        if(partners.errMess){
+            return(
+                <ScrollView>
+                    <Mission />
+                    <Card>
+                        <Card.Title>
+                            Community Parters
+                        </Card.Title>
+                        <Card.Divider />
+                        <Text>{partners.errMess}</Text>
+                    </Card>
+                </ScrollView>
+                );
+        }
+
     return(
     <ScrollView>
         <Mission />
