@@ -40,16 +40,16 @@ const HomeScreen = () => {
     const promotions = useSelector((state) => state.promotions);
     const partners = useSelector((state) => state.partners);
 
+    const featCampsite = campsites.campsitesArray.find((item) => item.featured);
+    const featPromotion = promotions.promotionsArray.find((item) => item.featured);
+    const featPartner = partners.partnersArray.find((item) => item.featured);
+
     const scaleValue = useRef(new Animated.Value(0)).current;
     const scaleAnimation = Animated.timing(scaleValue, {
         toValue: 1,
         duration: 1500,
         useNativeDriver: true
     })
-
-    const featCampsite = campsites.campsitesArray.find((item) => item.featured);
-    const featPromotion = promotions.promotionsArray.find((item) => item.featured);
-    const featPartner = partners.partnersArray.find((item) => item.featured);
 
     useEffect(() => {
         scaleAnimation.start();
