@@ -230,18 +230,25 @@ const Main = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        NetInfo.fetch().then((connectionInfo) => {
-            Platform.OS === 'ios' ? Alert.alert('Initial Network Type: ' + connectionInfo.type) : ToastAndroid.show(
-                'Initial Network Type: ' + connectionInfo.type, ToastAndroid.LONG
-            );
-        })
-
-        const unsubscribeNetInfo = NetInfo.addEventListener(
-            (connectionInfo) => {
-                handleConnectivityChange(connectionInfo)
-            })
+        const showNetInfo = async () => {
+            const connectionInfo = await NetInfo.fetch()
+            Platform.OS === 'ios' ? Alert.alert('Initial Network Type: ' + connectionInfo.type)
+            : ToastAndroid.show('Initial Network Type: ' + connectionInfo.type, ToastAndroid.LONG);
+            }
+            showNetInfo();
         
-            return unsubscribeNetInfo;
+
+        // NetInfo.fetch().then((connectionInfo) => {
+        //     Platform.OS === 'ios' ? Alert.alert('Initial Network Type: ' + connectionInfo.type) : ToastAndroid.show(
+        //         'Initial Network Type: ' + connectionInfo.type, ToastAndroid.LONG
+        //     );
+        // })
+
+        // const unsubscribeNetInfo = NetInfo.addEventListener(
+        //     (connectionInfo) => {
+        //         handleConnectivityChange(connectionInfo)
+        //     })
+        //     return unsubscribeNetInfo;
     }, []);
 
     const handleConnectivityChange = (connectionInfo) => {
